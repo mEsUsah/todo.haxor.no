@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ListsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +21,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('lists', function(){
+    return ListsController::index();
+})->middleware('auth');
+
+Route::post('/lists', [ListsController::class, 'create'])->middleware('auth');
+
+Route::get('list/{id}', function($id){
+    return ListsController::show($id);
+})->middleware('auth');
