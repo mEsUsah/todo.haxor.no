@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class ListsController extends Controller
 {
+    public static function index(){
+        $lists = DB::table('lists')->select(['id', 'name'])->get();
+        return view('sections.index', $lists);
+    }
+
     public static function show($id){
         $list = DB::table('lists')->where('id', $id);
 
