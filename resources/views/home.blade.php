@@ -4,20 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+            <div class="card" style="margin-bottom: 20px">
+                <div class="card-header">Content</div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    <li>
+                        <a href="/lists">Lists</a>
+                    </li>
+                    <li>
+                        <a href="/tasks">Tasks</a>
+                    </li>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
