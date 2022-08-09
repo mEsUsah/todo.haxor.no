@@ -26,7 +26,7 @@ class TasksController extends Controller
         $task->fill($validated);
         $task->complete = 0;
         $task->save();
-        return redirect('/tasks');
+        return redirect()->back();;
     }
 
     public function update(Request $request, $id)
@@ -40,6 +40,6 @@ class TasksController extends Controller
         $task = Task::find($id);
         $task->fill($validated);
         $task->save();
-        return redirect('/tasks');
+        return redirect()->back();
     }
 }
