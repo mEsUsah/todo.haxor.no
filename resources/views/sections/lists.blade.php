@@ -22,9 +22,14 @@
                 <div class="card-header">Add lists</div>
                 <div class="card-body">
                     <form action="/lists" method="post">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name">
-                        <button>Add</button>
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label" for="title">Name</label>
+                            <input class="form-control" type="text" name="name" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-primary">Add list</button>
+                        </div>
                     </form>
                 </div>
             </div>

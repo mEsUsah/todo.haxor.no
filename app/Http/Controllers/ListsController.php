@@ -11,7 +11,7 @@ class ListsController extends Controller
     public static function index()
     {
         $lists = Lists::all();
-        return view('sections.index', [
+        return view('sections.lists', [
             'lists' => $lists]
         );
     }
