@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lists;
+use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ListsController extends Controller
 {
-    public static function index(){
-        $lists = DB::table('lists')->select(['id', 'name'])->get();
+    public static function index()
+    {
+        $lists = Lists::all();
         return view('sections.index', [
             'lists' => $lists]
         );
     }
 
-    public static function create(Request $request){
+    public static function create(Request $request)
+    {
         $validated = $request->validate([
             'name' => ['required','string', 'max:255']
         ]);
@@ -28,13 +30,12 @@ class ListsController extends Controller
         return redirect('/lists');
     }
 
-    public static function show($id){
-        $list = DB::table('lists')->where('id', $id);
+    public static function show($id)
+    {
+        $tasks = Task::where('list', $id)->get();
 
-        return view('sections.lists', [
-            'id'    => $list->id,
-            'name'  => $list->name,
-            'data'  => $list->data
+        return view('sections.list', [
+            'tasks'  => $tasks
         ]);
     }
 }
