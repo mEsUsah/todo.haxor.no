@@ -35,7 +35,8 @@ class ListsController extends Controller
         $tasks = Task::where('list', $id)->get();
 
         return view('sections.list', [
-            'tasks'  => $tasks
+            'id'    => $id,
+            'tasks' => $tasks
         ]);
     }
 }
