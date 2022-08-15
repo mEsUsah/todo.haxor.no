@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\TasksXhrController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\TasksController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('auth')->group(function () {
+    Route::prefix('xhr')->group(function () {
+        Route::get('tasks', [TasksXhrController::class, 'index']);
+    });
+});
 
 Route::get('/', function () {
     return view('welcome');
