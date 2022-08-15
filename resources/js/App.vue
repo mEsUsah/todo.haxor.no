@@ -32,23 +32,7 @@ data(){
     return{
         activeList: 'pending',
         listId: document.getElementById("todo").getAttribute('data-list-id'),
-        tasks: [
-            {
-                id: 1,
-                title: "first",
-                complete: false
-            },
-            {
-                id: 2,
-                title: "second",
-                complete: false
-            },
-            {
-                id: 3,
-                title: "third",
-                complete: false
-            },
-        ]
+        tasks: []
     }
 },
 computed: {
@@ -107,9 +91,17 @@ components: {
     AddTask,
 },
 mounted(){
-        window.axios.get("/list/${this.listId}/data")
+        window.axios.get("/xhr/list/" + this.listId)
             .then((response) => {
-                console.log(response);
+                response.data.forEach(element => {
+                    if(element.complete == "0"){
+                        element.complete = false
+                    }
+                    if(element.complete == "1"){
+                        element.complete = true
+                    }
+                    this.tasks.push(element);
+                });
             });
     }
 }
