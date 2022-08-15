@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\ListsXhrController;
 use App\Http\Controllers\TasksXhrController;
 
 /*
@@ -19,6 +20,9 @@ use App\Http\Controllers\TasksXhrController;
 */
 Route::middleware('auth')->group(function () {
     Route::prefix('xhr')->group(function () {
+        Route::get('lists', [ListsXhrController::class, 'index']);
+        Route::get('list/{id}', [ListsXhrController::class, 'show']);
+        
         Route::get('tasks', [TasksXhrController::class, 'index']);
     });
 
