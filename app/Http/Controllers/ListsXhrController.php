@@ -10,7 +10,7 @@ class ListsXhrController extends Controller
 {
     public static function index()
     {
-        $lists = Lists::all();
+        $lists = Lists::select('id','name')->get();
         return response()->json($lists);
     }
 
