@@ -6,7 +6,7 @@ use App\Models\Lists;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
-class ListsController extends Controller
+class ListsOgController extends Controller
 {
     public static function index()
     {
