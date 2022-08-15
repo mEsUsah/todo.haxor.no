@@ -16,7 +16,9 @@ class ListsXhrController extends Controller
 
     public static function show($id)
     {
-        $tasks = Task::where('list', $id)->get();
+        $tasks = Task::where('list', $id)
+            ->select('id', 'title','complete')
+            ->get();
 
         return response()->json($tasks);
     }
