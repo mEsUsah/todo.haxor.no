@@ -21,6 +21,15 @@ Route::middleware('auth')->group(function () {
     Route::prefix('xhr')->group(function () {
         Route::get('tasks', [TasksXhrController::class, 'index']);
     });
+
+    // Basic routes that require user to be authenticated
+    Route::get('lists', [ListsController::class, 'index']);
+    Route::post('lists', [ListsController::class, 'create']);
+    Route::get('list/{id}', [ListsController::class, 'show']);
+
+    Route::get('tasks', [TasksController::class, 'index']);
+    Route::post('task', [TasksController::class, 'create']);
+    Route::post('task/{id}/edit', [TasksController::class, 'update']);
 });
 
 Route::get('/', function () {
@@ -30,12 +39,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/lists', [ListsController::class, 'index'])->middleware('auth');
-Route::post('/lists', [ListsController::class, 'create'])->middleware('auth');
-Route::get('/list/{id}', [ListsController::class, 'show'])->middleware('auth');
-
-Route::get('/tasks', [TasksController::class, 'index'])->middleware('auth');
-Route::post('/task', [TasksController::class, 'create'])->middleware('auth');
-Route::post('/task/{id}/edit', [TasksController::class, 'update'])->middleware('auth');
 
