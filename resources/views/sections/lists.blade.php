@@ -5,7 +5,21 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="margin-bottom: 20px">
-                <div class="card-header">Lists</div>
+                <div class="card-header">Lists - VUE.js app</div>
+                <div class="card-body">
+                    <ul>
+                        @if (isset($lists))
+                            @foreach ($lists as $list)
+                                <li><a href="/list/{{ $list->id }}">{{ $list->name }}</a></li>
+                            @endforeach
+                        @else
+                            <p>No lists created</p>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+            <div class="card" style="margin-bottom: 20px">
+                <div class="card-header">Lists - OG</div>
                 <div class="card-body">
                     <ul>
                         @if (isset($lists))
