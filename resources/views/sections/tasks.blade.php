@@ -12,13 +12,13 @@
                             @foreach ($tasks as $task)
                                 <li>{{ $task->list }}: {{ $task->title }}
                                     @if ($task->complete == 0)
-                                        <form action="/task/{{ $task->id }}/edit" method="post">
+                                        <form action="/og/task/{{ $task->id }}/edit" method="post">
                                             @csrf
                                             <input type="hidden" type="number" name="complete" value="1">
                                             <button class="btn btn-success">complete</button>
                                         </form>
                                     @else
-                                        <form action="/task/{{ $task->id }}/edit" method="post">
+                                        <form action="/og/task/{{ $task->id }}/edit" method="post">
                                             @csrf
                                             <input type="hidden" type="number" name="complete" value="0">
                                             <button class="btn btn-danger">uncomplete</button>
@@ -35,7 +35,7 @@
             <div class="card">
                 <div class="card-header">Add task</div>
                 <div class="card-body">
-                    <form action="/task" method="post">
+                    <form action="/og/task" method="post">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="title">Name</label>

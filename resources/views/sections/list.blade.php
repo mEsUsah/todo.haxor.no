@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-header">Add task to this list</div>
                 <div class="card-body">
-                    <form action="/task" method="post">
+                    <form action="/og/task" method="post">
                         @csrf
                         <input class="form-control" type="hidden" name="list" id="list" value="{{ $id }}">
                         <div class="mb-3">

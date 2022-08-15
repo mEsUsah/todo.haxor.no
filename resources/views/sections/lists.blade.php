@@ -10,7 +10,7 @@
                     <ul>
                         @if (isset($lists))
                             @foreach ($lists as $list)
-                                <li><a href="/list/{{ $list->id }}">{{ $list->name }}</a></li>
+                                <li><a href="/og/list/{{ $list->id }}">{{ $list->name }}</a></li>
                             @endforeach
                         @else
                             <p>No lists created</p>
@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-header">Add lists</div>
                 <div class="card-body">
-                    <form action="/lists" method="post">
+                    <form action="/og/lists" method="post">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label" for="title">Name</label>

@@ -8,10 +8,10 @@
                 <div class="card-header">Content</div>
                 <div class="card-body">
                     <li>
-                        <a href="/lists">Lists</a>
+                        <a href="/og/lists">Lists</a>
                     </li>
                     <li>
-                        <a href="/tasks">Tasks</a>
+                        <a href="/og/tasks">Tasks</a>
                     </li>
                 </div>
             </div>

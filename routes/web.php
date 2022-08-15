@@ -18,7 +18,7 @@ use App\Http\Controllers\TasksXhrController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function() {
     Route::prefix('xhr')->group(function () {
         Route::get('lists', [ListsXhrController::class, 'index']);
         Route::get('list/{id}', [ListsXhrController::class, 'show']);
@@ -26,14 +26,16 @@ Route::middleware('auth')->group(function () {
         Route::get('tasks', [TasksXhrController::class, 'index']);
     });
 
-    // Basic routes that require user to be authenticated
-    Route::get('lists', [ListsController::class, 'index']);
-    Route::post('lists', [ListsController::class, 'create']);
-    Route::get('list/{id}', [ListsController::class, 'show']);
-
-    Route::get('tasks', [TasksController::class, 'index']);
-    Route::post('task', [TasksController::class, 'create']);
-    Route::post('task/{id}/edit', [TasksController::class, 'update']);
+    // Basic "OG" routes that require user to be authenticated
+    Route::prefix('og')->group(function () {
+        Route::get('lists', [ListsController::class, 'index']);
+        Route::post('lists', [ListsController::class, 'create']);
+        Route::get('list/{id}', [ListsController::class, 'show']);
+    
+        Route::get('tasks', [TasksController::class, 'index']);
+        Route::post('task', [TasksController::class, 'create']);
+        Route::post('task/{id}/edit', [TasksController::class, 'update']);
+    });
 });
 
 Route::get('/', function () {
