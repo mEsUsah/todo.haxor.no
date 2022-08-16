@@ -52,13 +52,23 @@ computed: {
 },
 methods: {
     addTask(task){
-        const taskId = new Date().toISOString();
-        this.tasks.unshift({
-            id: taskId,
-            title: task,
-            complete: false
+        window.axios.post("/xhr/task", {
+           title: task,
+           list: this.listId
+        }).then((response) => {
+            const addedTask = response.data.task;
+            if(addedTask.complete == "0"){
+                    addedTask.complete = false
+                }
+                if(addedTask.complete == "1"){
+                    addedTask.complete = true
+                }
+            this.tasks.unshift({
+                id: addedTask.id,
+                title: addedTask.title,
+                complete: addedTask.complete
+            });
         });
-        
     },
     deleteTask(taskId){
         const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
