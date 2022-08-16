@@ -76,11 +76,17 @@ methods: {
     },
     completeTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-        this.tasks[taskIndex].complete = true;
+        
 
         // Update list in database
-        window.axios.post("/list/" + this.listId, {
-            task: this.tasks[taskIndex]
+        window.axios.post("/xhr/task/" + taskId + "/edit", {
+           id: taskId,
+           complete: 1
+        }).then((response) => {
+            if(response.status == 200){
+                // Set task i VUE app to completed
+                this.tasks[taskIndex].complete = true;
+            }
         });
     },
     activateTask(taskId){
