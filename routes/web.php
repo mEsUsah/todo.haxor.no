@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function() {
         Route::get('list/{id}', [ListsXhrController::class, 'show']);
         
         Route::get('tasks', [TasksXhrController::class, 'index']);
+        Route::post('task', [TasksXhrController::class, 'create']);
+        Route::post('task/{id}/edit', [TasksXhrController::class, 'update']);
     });
 
     // Basic "OG" routes that require user to be authenticated
