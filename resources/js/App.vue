@@ -77,21 +77,30 @@ methods: {
     completeTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
         
-
         // Update list in database
         window.axios.post("/xhr/task/" + taskId + "/edit", {
            id: taskId,
            complete: 1
         }).then((response) => {
             if(response.status == 200){
-                // Set task i VUE app to completed
+                // Set task in VUE app to completed
                 this.tasks[taskIndex].complete = true;
             }
         });
     },
     activateTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-        this.tasks[taskIndex].complete = false;
+
+        // Update list in database
+        window.axios.post("/xhr/task/" + taskId + "/edit", {
+           id: taskId,
+           complete: 0
+        }).then((response) => {
+            if(response.status == 200){
+                // Set task in VUE app to pending
+                this.tasks[taskIndex].complete = false;
+            }
+        });
     },
     showTasks(type){
         if(type === 'completed'){
