@@ -11,4 +11,21 @@ class TasksXhrController extends Controller
         $tasks = Task::all();
         return response()->json($tasks);
     }
+
+    public function create(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => ['required','string', 'max:255'],
+            'list'  => ['required','integer','min:0','max:99999']
+        ]);
+
+        $task = new Task;
+        $task->fill($validated);
+        $task->complete = 0;
+        $task->save();
+        return response()->json([
+            'created' => 'true',
+            'task' => $task
+        ]);
+    }
 }
