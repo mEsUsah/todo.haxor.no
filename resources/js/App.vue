@@ -16,23 +16,31 @@
             :id="task.id"
             :task="task.title"
             :complete="task.complete"
-            @delete-task="deleteTask"
             @complete-task="completeTask"
-            @activate-task="activateTask">
+            @activate-task="activateTask"
+            @modify-task="modifyTask">
         </task-item>
     </base-card>
+    <modal v-if="modalTask"
+        :id="modalTask.id"
+        :title="modalTask.title"
+        @close-modal="closeModal"
+        @delete-task="deleteTask">
+    </modal>
 </template>
 
 <script>
 import TaskItem from './components/TaskItem.vue';
 import AddTask from './components/AddTask.vue';
+import Modal from './components/Modal.vue';
 
 export default {
 data(){
     return{
         activeList: 'pending',
         listId: document.getElementById("todo").getAttribute('data-list-id'),
-        tasks: []
+        tasks: [],
+        modalTask: null
     }
 },
 computed: {
@@ -58,6 +66,17 @@ methods: {
         }).then((response) => {
             console.log("task added!");
         });
+    },
+    modifyTask(taskId){
+        console.log("modify: ", taskId);
+        const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
+        this.modalTask = {
+            id: this.tasks[taskIndex].id,
+            title: this.tasks[taskIndex].title
+        };
+    },
+    closeModal(){
+        this.modalTask = null;
     },
     deleteTask(taskId){
         const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
@@ -101,6 +120,7 @@ methods: {
 components: {
     TaskItem,
     AddTask,
+    Modal
 },
 mounted(){
     window.axios.get("/xhr/list/" + this.listId)
@@ -140,12 +160,13 @@ mounted(){
             .listen('TaskDeleted', (event) => {
                 const taskIndex = this.tasks.findIndex(task => task.id === event.id);
                 this.tasks.splice(taskIndex, 1);
+                this.modalTask = null;
             });
     }
 }
 </script>
 
-<style>
+<style scoped>
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
     body{
         margin: 0;
