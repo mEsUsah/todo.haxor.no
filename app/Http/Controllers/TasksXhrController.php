@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\TaskUpdated;
 use App\Models\Task;
+use App\Events\TaskCreated;
+use App\Events\TaskUpdated;
 use Illuminate\Http\Request;
 
 class TasksXhrController extends Controller
@@ -24,6 +25,9 @@ class TasksXhrController extends Controller
         $task->fill($validated);
         $task->complete = 0;
         $task->save();
+
+        broadcast(new TaskCreated($task->list, $task->id, $task->title));
+
         return response()->json([
             'task' => $task
         ]);
