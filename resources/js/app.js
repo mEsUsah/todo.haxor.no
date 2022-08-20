@@ -8,7 +8,7 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-import 'bootstrap';
+import './bootstrap';
 import { createApp } from 'vue';
 import App from './App.vue';
 import BaseCard from './components/BaseCard.vue';
