@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListsController;
-use App\Http\Controllers\ListsOgController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ListsXhrController;
-use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TasksXhrController;
 
 /*
@@ -19,7 +18,7 @@ use App\Http\Controllers\TasksXhrController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/', function() {
     return redirect()->route('home');
@@ -45,4 +44,8 @@ Route::middleware('auth')->group(function() {
     // Regular blade
     Route::get('lists', [ListsController::class, 'index']);
     Route::post('lists', [ListsController::class, 'create']);
+
+    // User management
+    Route::get('users', [UsersController::class, 'index']);
+    Route::post('user', [UsersController::class, 'create']);
 });
