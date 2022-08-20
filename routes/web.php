@@ -30,13 +30,6 @@ Route::middleware('auth')->group(function() {
         Route::post('task/{id}/delete', [TasksXhrController::class, 'delete']);
     });
 
-    // Basic "OG" routes that require user to be authenticated
-    Route::prefix('og')->group(function () { 
-        Route::get('tasks', [TasksController::class, 'index']);
-        Route::post('task', [TasksController::class, 'create']);
-        Route::post('task/{id}/edit', [TasksController::class, 'update']);
-    });
-
     // VUE.js app
     Route::get('list/{id}', [ListsController::class, 'show']);
 

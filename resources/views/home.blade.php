@@ -10,9 +10,6 @@
                     <li>
                         <a href="/lists">Lists</a>
                     </li>
-                    <li>
-                        <a href="/og/tasks">Tasks</a>
-                    </li>
                 </div>
             </div>
         </div>
