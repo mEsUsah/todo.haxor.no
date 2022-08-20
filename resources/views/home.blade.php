@@ -10,9 +10,11 @@
                     <li>
                         <a href="/lists">Lists</a>
                     </li>
-                    <li>
-                        <a href="/users">Users</a>
-                    </li>
+                    @if (Auth::user()->privilege_id == 2)
+                        <li>
+                            <a href="/users">Users</a>
+                        </li>
+                    @endif
                 </div>
             </div>
         </div>

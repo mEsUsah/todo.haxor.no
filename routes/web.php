@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function() {
     Route::get('list/{id}', [ListsController::class, 'show']);
 
     // Regular blade
-    Route::get('lists', [ListsController::class, 'index']);
+    Route::get('lists', [ListsController::class, 'index'])->name('lists');
     Route::post('lists', [ListsController::class, 'create']);
 
     // User management

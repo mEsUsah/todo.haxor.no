@@ -4,16 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
     public static function index()
     {
-        $users = User::all();
-        return view('sections.users.index', [
-            'users' => $users]
-        );
+        if(Auth::user()->privilege_id == 2) {
+            $users = User::all();
+            return view('sections.users.index', [
+                'users' => $users]
+            );
+        } else {
+            return redirect()->route('lists');
+        }
     }
 
     protected function create(Request $request)
