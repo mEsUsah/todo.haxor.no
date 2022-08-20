@@ -179,15 +179,3 @@ mounted(){
     }
 }
 </script>
-
-<style scoped>
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
-    body{
-        margin: 0;
-        font-family: 'Lato', sans-serif;
-        background-color: rgb(239 239 239);
-    }
-    #todo{
-        margin: 0 10px;
-    }
-</style>
