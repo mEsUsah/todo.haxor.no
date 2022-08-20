@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">Register User</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="/user">
                         @csrf
 
                         <div class="row mb-3">
@@ -69,6 +69,27 @@
                             </div>
                         </div>
                     </form>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 20px">
+                <div class="card-header">Active Users</div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </thead>
+                        <tbody>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <td>{{ $user->id}}</td>
+                                    <td>{{ $user->name}}</td>
+                                    <td>{{ $user->email}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
