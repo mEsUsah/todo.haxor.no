@@ -33,6 +33,7 @@ class UsersController extends Controller
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->password = Hash::make($validated['password']);
+        $user->privilege_id = 0;
         $user->save();
         return redirect('/users');
     }
