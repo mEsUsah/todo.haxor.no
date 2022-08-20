@@ -19,6 +19,15 @@ use App\Http\Controllers\TasksXhrController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/', function() {
+    return redirect()->route('home');
+});
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
 Route::middleware('auth')->group(function() {
     Route::prefix('xhr')->group(function () {
         Route::get('lists', [ListsXhrController::class, 'index']);
@@ -37,12 +46,3 @@ Route::middleware('auth')->group(function() {
     Route::get('lists', [ListsController::class, 'index']);
     Route::post('lists', [ListsController::class, 'create']);
 });
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
