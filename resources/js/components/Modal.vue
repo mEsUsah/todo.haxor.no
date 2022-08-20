@@ -1,8 +1,8 @@
 <template>
     <div class="wrapper">
-        <input type="text" :value="title">
+        <input type="text" v-model="inputText">
         <div class="buttons">
-            <base-button>Save</base-button>
+            <base-button @click="saveChanges">Save</base-button>
             <base-button @click="deleteTask(id)">Delete</base-button>
         </div>
     </div>
@@ -12,13 +12,21 @@
 <script>
 export default{
     props: ['id','title'],
-    emits: ['close-modal','delete-task'],
+    emits: ['close-modal','rename-task','delete-task'],
+    data(){
+        return{
+            inputText: this.title
+        }
+    },
     methods:{
         closeModal(){
             this.$emit('close-modal');
         },
         deleteTask(taskId){
             this.$emit('delete-task',taskId);
+        },
+        saveChanges(){
+            this.$emit('rename-task',this.id, this.inputText);
         }
     }
 }

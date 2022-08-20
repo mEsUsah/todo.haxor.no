@@ -25,7 +25,8 @@
         :id="modalTask.id"
         :title="modalTask.title"
         @close-modal="closeModal"
-        @delete-task="deleteTask">
+        @delete-task="deleteTask"
+        @rename-task="renameTask">
     </modal>
 </template>
 
@@ -68,7 +69,6 @@ methods: {
         });
     },
     modifyTask(taskId){
-        console.log("modify: ", taskId);
         const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
         this.modalTask = {
             id: this.tasks[taskIndex].id,
@@ -78,8 +78,17 @@ methods: {
     closeModal(){
         this.modalTask = null;
     },
+    renameTask(taskId, title){
+        window.axios.post("/xhr/task/" + taskId + "/edit", {
+           id: taskId,
+           title: title
+        }).then((response) => {
+            console.log("task renamed");
+        });
+    },
     deleteTask(taskId){
         const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
+        
         window.axios.post("/xhr/task/" + taskId + "/delete", {
            id: taskId,
         }).then((response) => {
@@ -89,7 +98,6 @@ methods: {
     completeTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
         
-        // Update list in database
         window.axios.post("/xhr/task/" + taskId + "/edit", {
            id: taskId,
            complete: 1
@@ -100,7 +108,6 @@ methods: {
     activateTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
 
-        // Update list in database
         window.axios.post("/xhr/task/" + taskId + "/edit", {
            id: taskId,
            complete: 0
@@ -148,6 +155,13 @@ mounted(){
                     if(event.complete == 0){
                         this.tasks[taskIndex].complete = false;
                     }
+                }
+            })
+            .listen('TaskRenamed', (event) => {
+                if(event.list == this.listId){
+                    const taskIndex = this.tasks.findIndex(task => task.id === event.task);
+                    this.tasks[taskIndex].title = event.title;
+                    this.modalTask = null;
                 }
             })
             .listen('TaskCreated', (event) => {
