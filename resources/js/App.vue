@@ -26,7 +26,6 @@
 <script>
 import TaskItem from './components/TaskItem.vue';
 import AddTask from './components/AddTask.vue';
-import Echo from 'laravel-echo';
 
 export default {
 data(){
@@ -72,10 +71,7 @@ methods: {
            id: taskId,
            complete: 1
         }).then((response) => {
-            if(response.status == 200){
-                // Set task in VUE app to completed
-                this.tasks[taskIndex].complete = true;
-            }
+            console.log("task completed");
         });
     },
     activateTask(taskId){
@@ -86,10 +82,7 @@ methods: {
            id: taskId,
            complete: 0
         }).then((response) => {
-            if(response.status == 200){
-                // Set task in VUE app to pending
-                this.tasks[taskIndex].complete = false;
-            }
+            console.log("task activated");
         });
     },
     showTasks(type){
