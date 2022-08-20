@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Events\TaskCreated;
 use App\Events\TaskDeleted;
+use App\Events\TaskRenamed;
 use App\Events\TaskUpdated;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,13 @@ class TasksXhrController extends Controller
         $task->fill($validated);
         $task->save();
 
-        broadcast(new TaskUpdated($task->list, $task->id, $task->complete));
+        if(isset($validated['complete'])){
+            broadcast(new TaskUpdated($task->list, $task->id, $task->complete));
+        }
+        if(isset($validated['title'])){
+            broadcast(new TaskRenamed($task->list, $task->id, $task->title));
+        }
+
 
         return response()->json([
             'task' => $task
