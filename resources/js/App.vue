@@ -26,6 +26,7 @@
 <script>
 import TaskItem from './components/TaskItem.vue';
 import AddTask from './components/AddTask.vue';
+import Echo from 'laravel-echo';
 
 export default {
 data(){
@@ -116,18 +117,25 @@ components: {
     AddTask,
 },
 mounted(){
-        window.axios.get("/xhr/list/" + this.listId)
-            .then((response) => {
-                response.data.forEach(element => {
-                    if(element.complete == "0"){
-                        element.complete = false
-                    }
-                    if(element.complete == "1"){
-                        element.complete = true
-                    }
-                    this.tasks.push(element);
-                });
+    window.axios.get("/xhr/list/" + this.listId)
+        .then((response) => {
+            response.data.forEach(element => {
+                if(element.complete == "0"){
+                    element.complete = false
+                }
+                if(element.complete == "1"){
+                    element.complete = true
+                }
+                this.tasks.push(element);
             });
+        });
+    },
+    created(){
+        console.log('list.' + this.listId);
+        window.Echo.private('list.' + this.listId)
+            .listen('TaskUpdated', (e) => {
+                console.log(e);
+            })
     }
 }
 </script>
