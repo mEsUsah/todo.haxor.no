@@ -27,9 +27,9 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    wsHost: 'ws.haxor.no',
-    wsPort: 443,
-    encrypted: true,
-    forceTLS: true,
+    wsHost: process.env.MIX_PUSHER_HOST,
+    wsPort: process.env.MIX_PUSHER_PORT,
+    encrypted: process.env.MIX_PUSHER_SCHEME == 'https',
+    forceTLS: process.env.MIX_PUSHER_SCHEME == 'https',
     disableStats: true
 });
