@@ -7,15 +7,21 @@
             <div class="card" style="margin-bottom: 20px">
                 <div class="card-header">Lists available</div>
                 <div class="card-body">
-                    <ul>
+                    <table class="table table-hover">
                         @if (isset($lists))
-                            @foreach ($lists as $list)
-                                <li><a href="/list/{{ $list->id }}">{{ $list->name }}</a></li>
-                            @endforeach
+                                @foreach ($lists as $list)
+                                <tr>
+                                    <td>
+                                        <a href="/list/{{ $list->id }}">{{ $list->name }}</a>
+                                    </td>
+                                </tr>
+                                @endforeach
                         @else
-                            <p>No lists created</p>
+                            <tr>
+                                <td>No lists created</td>
+                            </tr>
                         @endif
-                    </ul>
+                    </table>
                 </div>
             </div>
             <div class="card">
