@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TaskUpdated;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,9 @@ class TasksXhrController extends Controller
         $task = Task::find($id);
         $task->fill($validated);
         $task->save();
+
+        broadcast(new TaskUpdated($task->list, $task->id, $task->complete));
+
         return response()->json([
             'task' => $task
         ]);
