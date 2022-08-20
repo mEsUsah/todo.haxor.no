@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Events\TaskCreated;
+use App\Events\TaskDeleted;
 use App\Events\TaskUpdated;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,18 @@ class TasksXhrController extends Controller
 
         return response()->json([
             'task' => $task
+        ]);
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $task = Task::find($id);
+        $task->delete();
+
+        broadcast(new TaskDeleted($task->list, $task->id));
+
+        return response()->json([
+            'deleted' => true
         ]);
     }
 }
