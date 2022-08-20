@@ -57,18 +57,7 @@ methods: {
            title: task,
            list: this.listId
         }).then((response) => {
-            const addedTask = response.data.task;
-            if(addedTask.complete == "0"){
-                    addedTask.complete = false
-                }
-                if(addedTask.complete == "1"){
-                    addedTask.complete = true
-                }
-            this.tasks.unshift({
-                id: addedTask.id,
-                title: addedTask.title,
-                complete: addedTask.complete
-            });
+            console.log("task added!");
         });
     },
     deleteTask(taskId){
@@ -143,6 +132,13 @@ mounted(){
                         this.tasks[taskIndex].complete = false;
                     }
                 }
+            })
+            .listen('TaskCreated', (event) => {
+                this.tasks.unshift({
+                    id: event.id,
+                    title: event.title,
+                    complete: false
+                });
             })
     }
 }
