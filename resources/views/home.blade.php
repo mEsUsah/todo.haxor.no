@@ -7,14 +7,20 @@
             <div class="card" style="margin-bottom: 20px">
                 <div class="card-header">Content</div>
                 <div class="card-body">
-                    <li>
-                        <a href="/lists">Lists</a>
-                    </li>
-                    @if (Auth::user()->privilege_id == 2)
-                        <li>
-                            <a href="/users">Users</a>
-                        </li>
-                    @endif
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <a href="/lists">Lists</a>
+                            </td>
+                        </tr>
+                        @if (Auth::user()->privilege_id == 2)
+                            <tr>
+                                <td>
+                                    <a href="/users">Users</a>
+                                </td>
+                            </tr>
+                        @endif
+                    </table>
                 </div>
             </div>
         </div>
