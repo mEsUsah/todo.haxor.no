@@ -8,7 +8,7 @@
                 <div class="card-header">Content</div>
                 <div class="card-body">
                     <li>
-                        <a href="/og/lists">Lists</a>
+                        <a href="/lists">Lists</a>
                     </li>
                     <li>
                         <a href="/og/tasks">Tasks</a>
