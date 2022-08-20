@@ -131,10 +131,18 @@ mounted(){
         });
     },
     created(){
-        console.log('list.' + this.listId);
         window.Echo.private('list.' + this.listId)
-            .listen('TaskUpdated', (e) => {
-                console.log(e);
+            .listen('TaskUpdated', (event) => {
+                if(event.list == this.listId){
+                    const taskIndex = this.tasks.findIndex(task => task.id === event.task);
+                    
+                    if(event.complete == 1){
+                        this.tasks[taskIndex].complete = true;
+                    }
+                    if(event.complete == 0){
+                        this.tasks[taskIndex].complete = false;
+                    }
+                }
             })
     }
 }
