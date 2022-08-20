@@ -61,7 +61,11 @@ methods: {
     },
     deleteTask(taskId){
         const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
-        this.tasks.splice(taskIndex,1);
+        window.axios.post("/xhr/task/" + taskId + "/delete", {
+           id: taskId,
+        }).then((response) => {
+            console.log("task deleted");
+        });
     },
     completeTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
@@ -133,6 +137,10 @@ mounted(){
                     complete: false
                 });
             })
+            .listen('TaskDeleted', (event) => {
+                const taskIndex = this.tasks.findIndex(task => task.id === event.id);
+                this.tasks.splice(taskIndex, 1);
+            });
     }
 }
 </script>
