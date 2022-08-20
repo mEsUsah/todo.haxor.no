@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function() {
 
     // Regular blade
     Route::get('lists', [ListsController::class, 'index'])->name('lists');
-    Route::post('lists', [ListsController::class, 'create']);
+    Route::post('list', [ListsController::class, 'create']);
 
     // User management
     Route::get('users', [UsersController::class, 'index']);
