@@ -10,6 +10,9 @@
                     <li>
                         <a href="/lists">Lists</a>
                     </li>
+                    <li>
+                        <a href="/users">Users</a>
+                    </li>
                 </div>
             </div>
         </div>
