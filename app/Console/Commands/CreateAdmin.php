@@ -47,9 +47,11 @@ class CreateAdmin extends Command
                 $user->privilege_id = $privilege;
                 $user->save();
                 $this->info('Created user!');
+                return Command::SUCCESS;
             } catch (Exception $e) {
                 $this->error('Something went wrong!');
                 $this->error($e->getMessage());
+                return Command::FAILURE;
             }
         }
     }
