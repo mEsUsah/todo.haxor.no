@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "mix watch",
-        "build": "mix"
+        "prod": "mix"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
