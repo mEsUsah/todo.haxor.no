@@ -12,6 +12,15 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function mappedFieldsCli()
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'privilege' => config('user.privilege')[$this->privilege_id],
+        ];
+    }
+    
     /**
      * The attributes that are mass assignable.
      *
