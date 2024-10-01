@@ -24,21 +24,23 @@
                     </table>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">Add lists</div>
-                <div class="card-body">
-                    <form action="/list" method="post">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="form-label" for="title">Name</label>
-                            <input class="form-control" type="text" name="name" id="name">
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary">Add list</button>
-                        </div>
-                    </form>
+            @can('create', App\Models\TaskList::class)
+                <div class="card">
+                    <div class="card-header">Add lists</div>
+                    <div class="card-body">
+                        <form action="/list" method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <label class="form-label" for="title">Name</label>
+                                <input class="form-control" type="text" name="name" id="name">
+                            </div>
+                            <div class="mb-3">
+                                <button class="btn btn-primary">Add list</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            @endcan
         </div>
     </div>
 @endsection

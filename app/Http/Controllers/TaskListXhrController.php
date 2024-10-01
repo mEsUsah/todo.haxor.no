@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use App\Models\Lists;
+use App\Models\TaskList;
 use Illuminate\Http\Request;
 
-class ListsXhrController extends Controller
+class TaskListXhrController extends Controller
 {
     public static function index()
     {
-        $lists = Lists::select('id','name')->get();
+        $lists = TaskList::select('id','name')->get();
         return response()->json($lists);
     }
 
     public static function show($id)
     {
-        $tasks = Task::where('list', $id)
+        $tasks = TaskList::where('list', $id)
             ->select('id', 'title','complete')
             ->get();
 
