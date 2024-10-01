@@ -13,13 +13,13 @@
                                 <a href="/lists">Lists</a>
                             </td>
                         </tr>
-                        @if (Auth::user()->privilege_id == 2)
+                        @can('viewAny', App\Models\User::class)
                             <tr>
                                 <td>
                                     <a href="/users">Users</a>
                                 </td>
                             </tr>
-                        @endif
+                        @endcan
                     </table>
                 </div>
             </div>
