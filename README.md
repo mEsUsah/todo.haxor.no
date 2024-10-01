@@ -19,8 +19,10 @@ To make the app work it does need to have access to a pusher compliant messaging
 
 ## Setup
 On a fresh install, you need to change the DB values in the .env file and then run the migrations to create DB tables.
+You also need to generate the security key.
 ```bash
 php artisan migrate
+php artisan key:generate
 ```
 
 ## Create Admin user
