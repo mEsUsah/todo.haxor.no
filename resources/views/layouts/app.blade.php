@@ -1,6 +1,6 @@
 <!doctype html>
 @php
-   $cachebust = "1.0.1";
+   $cachebust = "1.0.2";
 @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>

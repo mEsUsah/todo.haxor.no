@@ -20946,9 +20946,9 @@ __webpack_require__.r(__webpack_exports__);
     touchStart: function touchStart(event) {
       this.touchStartTimeStamp = event.timeStamp;
     },
-    touchEnd: function touchEnd(event, taskId) {
+    touchEnd: function touchEnd(event) {
       if (event.timeStamp - this.touchStartTimeStamp > 800) {
-        this.$emit('modify-task', taskId);
+        this.$emit('modify-task', this.id);
       }
     }
   }
@@ -21197,9 +21197,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_base_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("base-button");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     onTouchend: _cache[2] || (_cache[2] = function ($event) {
-      return $options.touchEnd($event, $props.id);
+      return $options.touchEnd($event);
     }),
     onTouchstart: _cache[3] || (_cache[3] = function ($event) {
+      return $options.touchStart($event);
+    }),
+    onMouseup: _cache[4] || (_cache[4] = function ($event) {
+      return $options.touchEnd($event);
+    }),
+    onMousedown: _cache[5] || (_cache[5] = function ($event) {
       return $options.touchStart($event);
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.task), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$props.complete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_base_button, {
@@ -28690,7 +28696,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.wrapper[data-v-53ab54d2]{\n    display: block;\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%);\n    background-color: rgb(0, 194, 0);\n    border: 1px solid black;\n    padding: 20px;\n    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;\n    z-index: 2;\n}\n.background[data-v-53ab54d2]{\n    position: fixed;\n    height: 100vh;\n    width: 100vh;\n    top: 0;\n    left: 0;\n    background-color: rgba(0,0,0,0.5);\n    z-index: 1;\n}\n.buttons[data-v-53ab54d2]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    margin-top: 20px;\n}\ninput[data-v-53ab54d2]{\n        flex-grow: 1;\n        padding: 6px;\n        font-size: 16px;\n        line-height: 16px;\n        border: 1px solid black;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.wrapper[data-v-53ab54d2]{\n    display: block;\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%);\n    background-color: rgb(0, 194, 0);\n    border: 1px solid black;\n    padding: 20px;\n    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;\n    z-index: 2;\n}\n.background[data-v-53ab54d2]{\n    position: fixed;\n    height: 100vh;\n    width: 100vw;\n    top: 0;\n    left: 0;\n    background-color: rgba(0,0,0,0.5);\n    z-index: 1;\n}\n.buttons[data-v-53ab54d2]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    margin-top: 20px;\n}\ninput[data-v-53ab54d2]{\n        flex-grow: 1;\n        padding: 6px;\n        font-size: 16px;\n        line-height: 16px;\n        border: 1px solid black;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28738,7 +28744,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-00f813a3]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px 0;\n}\ndiv[data-v-00f813a3]:not(:last-of-type){\n    border-bottom: 1px solid white;\n}\np[data-v-00f813a3]{\n    margin: 0;\n    text-transform: capitalize;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-00f813a3]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px 0;\n}\ndiv[data-v-00f813a3]:not(:last-of-type){\n    border-bottom: 1px solid white;\n}\np[data-v-00f813a3]{\n    margin: 0;\n    text-transform: capitalize;\n    -webkit-user-select: none;\n       -moz-user-select: none;\n            user-select: none;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
