@@ -24,7 +24,6 @@ Route::get('/', function() {
     return redirect()->route('home');
 });
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::middleware('auth')->group(function() {
@@ -38,7 +37,8 @@ Route::middleware('auth')->group(function() {
             Route::post('task/{id}/delete', [TasksXhrController::class, 'delete']);
         });
     });
-
+    
+    Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('lists', [TaskListController::class, 'index'])->name('lists');
     Route::post('list', [TaskListController::class, 'create']);
     Route::get('list/{id}', [TaskListController::class, 'show']);
