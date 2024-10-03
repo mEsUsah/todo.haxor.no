@@ -22,6 +22,7 @@
     <main>
         @yield('content')
     </main>
+    @include('parts.footer')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @stack('scripts')
