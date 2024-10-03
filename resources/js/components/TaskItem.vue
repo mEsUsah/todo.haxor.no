@@ -2,8 +2,8 @@
     <div @touchend="touchEnd($event, id)" @touchstart="touchStart($event)">
         <p>{{ task }}</p>
         <div>
-            <base-button v-if="complete" @click="activateTask(id)">Activate</base-button>
-            <base-button v-else @click="completeTask(id)">Complete</base-button>
+            <base-button v-if="complete" @click="activateTask(id)">Undo</base-button>
+            <base-button v-else @click="completeTask(id)">Done</base-button>
         </div>
     </div>
 </template>
@@ -42,7 +42,7 @@ div{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 0;
     
 }
 div:not(:last-of-type){
