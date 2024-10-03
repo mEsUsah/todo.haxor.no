@@ -20,7 +20,12 @@
                     @can('viewAny', App\Models\User::class)
                         <li><a href="{{ route('users') }}">Users</a></li>
                     @endcan
-                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button>Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </div>
