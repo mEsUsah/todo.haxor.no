@@ -1,4 +1,7 @@
 <!doctype html>
+@php
+   $cachebust = "1.0.1";
+@endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -14,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}?v={{$cachebust}}" rel="stylesheet">
     @stack('styles')
 </head>
 <body>
@@ -24,7 +27,7 @@
     </main>
     @include('parts.footer')
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}?v={{$cachebust}}"></script>
     @stack('scripts')
 </body>
 </html>

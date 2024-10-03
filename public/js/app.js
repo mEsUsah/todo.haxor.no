@@ -21191,8 +21191,8 @@ __webpack_require__.r(__webpack_exports__);
 var _withScopeId = function _withScopeId(n) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-00f813a3"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
 };
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Activate");
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Complete");
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Undo");
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Done");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_base_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("base-button");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
@@ -28738,7 +28738,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-00f813a3]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px;\n}\ndiv[data-v-00f813a3]:not(:last-of-type){\n    border-bottom: 1px solid white;\n}\np[data-v-00f813a3]{\n    margin: 0;\n    text-transform: capitalize;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-00f813a3]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px 0;\n}\ndiv[data-v-00f813a3]:not(:last-of-type){\n    border-bottom: 1px solid white;\n}\np[data-v-00f813a3]{\n    margin: 0;\n    text-transform: capitalize;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
