@@ -20671,7 +20671,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addTask: function addTask(task) {
-      window.axios.post("/xhr/task", {
+      window.axios.post("/xhr/v1/task", {
         title: task,
         list: this.listId
       }).then(function (response) {
@@ -20691,7 +20691,7 @@ __webpack_require__.r(__webpack_exports__);
       this.modalTask = null;
     },
     renameTask: function renameTask(taskId, title) {
-      window.axios.post("/xhr/task/" + taskId + "/edit", {
+      window.axios.post("/xhr/v1/task/" + taskId + "/edit", {
         id: taskId,
         title: title
       }).then(function (response) {
@@ -20702,7 +20702,7 @@ __webpack_require__.r(__webpack_exports__);
       var taskIndex = this.tasks.findIndex(function (task) {
         return task.id === taskId;
       });
-      window.axios.post("/xhr/task/" + taskId + "/delete", {
+      window.axios.post("/xhr/v1/task/" + taskId + "/delete", {
         id: taskId
       }).then(function (response) {
         console.log("task deleted");
@@ -20712,7 +20712,7 @@ __webpack_require__.r(__webpack_exports__);
       var taskIndex = this.tasks.findIndex(function (task) {
         return task.id === taskId;
       });
-      window.axios.post("/xhr/task/" + taskId + "/edit", {
+      window.axios.post("/xhr/v1/task/" + taskId + "/edit", {
         id: taskId,
         complete: 1
       }).then(function (response) {
@@ -20723,7 +20723,7 @@ __webpack_require__.r(__webpack_exports__);
       var taskIndex = this.tasks.findIndex(function (task) {
         return task.id === taskId;
       });
-      window.axios.post("/xhr/task/" + taskId + "/edit", {
+      window.axios.post("/xhr/v1/task/" + taskId + "/edit", {
         id: taskId,
         complete: 0
       }).then(function (response) {
@@ -20746,7 +20746,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var _this = this;
-    window.axios.get("/xhr/list/" + this.listId).then(function (response) {
+    window.axios.get("/xhr/v1/list/" + this.listId).then(function (response) {
       response.data.forEach(function (element) {
         if (element.complete == "0") {
           element.complete = false;
@@ -21241,6 +21241,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_BaseCard_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/BaseCard.vue */ "./resources/js/components/BaseCard.vue");
 /* harmony import */ var _components_BaseButton_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/BaseButton.vue */ "./resources/js/components/BaseButton.vue");
 /* harmony import */ var _components_TabsWrapper_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/TabsWrapper.vue */ "./resources/js/components/TabsWrapper.vue");
+/* harmony import */ var _components_accordian_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/accordian.js */ "./resources/js/components/accordian.js");
+/* harmony import */ var _components_menu_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/menu.js */ "./resources/js/components/menu.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -21255,6 +21257,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 
+
+
 var todoList = document.getElementById('todo');
 if (todoList) {
   var app = (0,vue__WEBPACK_IMPORTED_MODULE_1__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
@@ -21263,6 +21267,8 @@ if (todoList) {
   app.component('tabs-wrapper', _components_TabsWrapper_vue__WEBPACK_IMPORTED_MODULE_5__["default"]);
   app.mount('#todo');
 }
+_components_accordian_js__WEBPACK_IMPORTED_MODULE_6__["default"].init();
+_components_menu_js__WEBPACK_IMPORTED_MODULE_7__["default"].init();
 
 /***/ }),
 
@@ -21308,6 +21314,96 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_2__["default"]({
   encrypted: "https" == 'https',
   forceTLS: "https" == 'https',
   disableStats: true
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/accordian.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/accordian.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  _accordianButtons: document.querySelectorAll("[data-button-accordian]"),
+  _accordianTargets: document.querySelectorAll("[data-target-accordian]"),
+  init: function init() {
+    if (this._accordianButtons && this._accordianTargets) {
+      this._accordianButtons.forEach(function (element) {
+        element.addEventListener("click", function () {
+          var targetValue = element.getAttribute("data-button-accordian");
+          var toggleTarget = document.querySelector("[data-target-accordian='" + targetValue + "']");
+          var copyOfTarget = toggleTarget.cloneNode(true);
+          copyOfTarget.setAttribute("style", "max-height:unset");
+          toggleTarget.parentNode.appendChild(copyOfTarget);
+          var height = copyOfTarget.offsetHeight;
+          copyOfTarget.parentNode.removeChild(copyOfTarget);
+          if (toggleTarget.classList.contains("is-active")) {
+            toggleTarget.setAttribute("style", "max-height:0");
+            toggleTarget.classList.remove("is-active");
+            element.classList.remove("is-active");
+          } else {
+            toggleTarget.setAttribute("style", "max-height:" + height + "px");
+            toggleTarget.classList.add("is-active");
+            element.classList.add("is-active");
+          }
+        });
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/menu.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/menu.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  init: function init() {
+    var lastScrollTop = 0;
+    var hamburgerButton = document.querySelector("[data-menu-button]");
+    var sidebar = document.querySelector(".article__content--sidebar");
+    var header = document.querySelector("[data-header]");
+    var menu = document.querySelector("[data-menu-content]");
+    window.addEventListener("scroll", function () {
+      // or window.addEventListener("scroll"....
+      //let activeMenu = this._hamburger.classList.contains("is-active");
+      var hamburgerButtonActive = hamburgerButton.classList.contains("is-active");
+      var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+      if (!hamburgerButtonActive && window.pageYOffset > 100 && st > lastScrollTop) {
+        // downscroll code
+        header.classList.remove("active");
+        if (sidebar) {
+          sidebar.classList.remove("menuOpen");
+        }
+      } else {
+        // upscroll code
+        header.classList.add("active");
+        if (sidebar) {
+          sidebar.classList.add("menuOpen");
+        }
+      }
+      lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    }, false);
+    if (hamburgerButton && menu) {
+      hamburgerButton.addEventListener("click", function () {
+        hamburgerButton.classList.toggle("is-active");
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -28522,7 +28618,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-f60e7faa]{\r\n        width: 100%;\r\n        display: flex;\n}\ninput[data-v-f60e7faa]{\r\n        flex-grow: 1;\r\n        padding: 6px;\r\n        font-size: 16px;\r\n        line-height: 16px;\r\n        border: 1px solid black;\r\n        border-right: none;\n}\nbutton[data-v-f60e7faa]{\r\n        padding: 6px 12px;\r\n        font-size: 16px;\r\n        line-height: 16px;\r\n        border: 1px solid black;\r\n        background-color: black;\r\n        color: white;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-f60e7faa]{\n        width: 100%;\n        display: flex;\n}\ninput[data-v-f60e7faa]{\n        flex-grow: 1;\n        padding: 6px;\n        font-size: 16px;\n        line-height: 16px;\n        border: 1px solid black;\n        border-right: none;\n}\nbutton[data-v-f60e7faa]{\n        padding: 6px 12px;\n        font-size: 16px;\n        line-height: 16px;\n        border: 1px solid black;\n        background-color: black;\n        color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28546,7 +28642,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbutton[data-v-21673c8e]{\r\n        padding: 6px 12px;\r\n        font-size: 16px;\r\n        line-height: 16px;\r\n        border: 1px solid black;\r\n        background-color: black;\r\n        color: white;\r\n        cursor: pointer;\n}\nbutton[data-v-21673c8e]:not(:first-child){\r\n        margin-left: 6px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbutton[data-v-21673c8e]{\n        padding: 6px 12px;\n        font-size: 16px;\n        line-height: 16px;\n        border: 1px solid black;\n        background-color: black;\n        color: white;\n        cursor: pointer;\n}\nbutton[data-v-21673c8e]:not(:first-child){\n        margin-left: 6px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28570,7 +28666,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-939adb28]{\r\n        position: relative;\r\n        background-color: rgb(0, 194, 0);\r\n        padding: 20px;\r\n        margin: 20px auto 0 auto;\r\n        max-width: 800px;\r\n        widows: 100%;\r\n        border: 1px solid black;\n}\ndiv .tabbed[data-v-939adb28]{\r\n        margin-top: 50px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-939adb28]{\n        position: relative;\n        background-color: rgb(0, 194, 0);\n        padding: 20px;\n        margin: 20px auto 0 auto;\n        max-width: 800px;\n        widows: 100%;\n        border: 1px solid black;\n}\ndiv .tabbed[data-v-939adb28]{\n        margin-top: 50px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28594,7 +28690,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.wrapper[data-v-53ab54d2]{\r\n    display: block;\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translateX(-50%) translateY(-50%);\r\n    background-color: rgb(0, 194, 0);\r\n    border: 1px solid black;\r\n    padding: 20px;\r\n    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;\r\n    z-index: 2;\n}\n.background[data-v-53ab54d2]{\r\n    position: fixed;\r\n    height: 100vh;\r\n    width: 100vh;\r\n    top: 0;\r\n    left: 0;\r\n    background-color: rgba(0,0,0,0.5);\r\n    z-index: 1;\n}\n.buttons[data-v-53ab54d2]{\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    margin-top: 20px;\n}\ninput[data-v-53ab54d2]{\r\n        flex-grow: 1;\r\n        padding: 6px;\r\n        font-size: 16px;\r\n        line-height: 16px;\r\n        border: 1px solid black;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.wrapper[data-v-53ab54d2]{\n    display: block;\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translateX(-50%) translateY(-50%);\n    background-color: rgb(0, 194, 0);\n    border: 1px solid black;\n    padding: 20px;\n    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;\n    z-index: 2;\n}\n.background[data-v-53ab54d2]{\n    position: fixed;\n    height: 100vh;\n    width: 100vh;\n    top: 0;\n    left: 0;\n    background-color: rgba(0,0,0,0.5);\n    z-index: 1;\n}\n.buttons[data-v-53ab54d2]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    margin-top: 20px;\n}\ninput[data-v-53ab54d2]{\n        flex-grow: 1;\n        padding: 6px;\n        font-size: 16px;\n        line-height: 16px;\n        border: 1px solid black;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28618,7 +28714,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-573210cc]{\r\n        position: absolute;\r\n        top: -30px;\r\n        left: -1px;\n}\nbutton[data-v-573210cc]{\r\n        padding: 6px 12px;\r\n        font-size: 16px;\r\n        line-height: 16px;\r\n        background-color: rgb(0, 169, 0);\r\n        border: 1px solid black;\r\n        color: white;\r\n        cursor: pointer;\n}\nbutton[data-v-573210cc]:not(:first-child){\r\n        border-left: none;\n}\nbutton.active[data-v-573210cc]{\r\n        border-bottom-color: rgb(0, 194, 0);\r\n        background-color: rgb(0, 194, 0);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-573210cc]{\n        position: absolute;\n        top: -30px;\n        left: -1px;\n}\nbutton[data-v-573210cc]{\n        padding: 6px 12px;\n        font-size: 16px;\n        line-height: 16px;\n        background-color: rgb(0, 169, 0);\n        border: 1px solid black;\n        color: white;\n        cursor: pointer;\n}\nbutton[data-v-573210cc]:not(:first-child){\n        border-left: none;\n}\nbutton.active[data-v-573210cc]{\n        border-bottom-color: rgb(0, 194, 0);\n        background-color: rgb(0, 194, 0);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28642,7 +28738,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-00f813a3]{\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    padding: 10px;\n}\ndiv[data-v-00f813a3]:not(:last-of-type){\r\n    border-bottom: 1px solid white;\n}\np[data-v-00f813a3]{\r\n    margin: 0;\r\n    text-transform: capitalize;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv[data-v-00f813a3]{\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n    padding: 10px;\n}\ndiv[data-v-00f813a3]:not(:last-of-type){\n    border-bottom: 1px solid white;\n}\np[data-v-00f813a3]{\n    margin: 0;\n    text-transform: capitalize;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
