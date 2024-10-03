@@ -46,6 +46,6 @@ Route::middleware('auth')->group(function() {
     Route::post('list', [TaskListController::class, 'create']);
 
     // User management
-    Route::get('users', [UsersController::class, 'index']);
+    Route::get('users', [UsersController::class, 'index'])->name('users');
     Route::post('user', [UsersController::class, 'create']);
 });

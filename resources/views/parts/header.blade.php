@@ -16,6 +16,10 @@
         <div class="menu__content--wrapper">
             <nav>
                 <ul>
+                    <li><a href="{{ route('lists') }}">Lists</a></li>
+                    @can('viewAny', App\Models\User::class)
+                        <li><a href="{{ route('users') }}">Users</a></li>
+                    @endcan
                     <li><a href="{{ route('logout') }}">Logout</a></li>
                 </ul>
             </nav>
