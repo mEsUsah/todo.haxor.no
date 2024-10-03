@@ -29,23 +29,19 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function() {
     Route::prefix('xhr')->group(function () {
-        Route::get('lists', [TaskListXhrController::class, 'index']);
-        Route::get('list/{id}', [TaskListXhrController::class, 'show']);
-        
-        Route::get('tasks', [TasksXhrController::class, 'index']);
-        Route::post('task', [TasksXhrController::class, 'create']);
-        Route::post('task/{id}/edit', [TasksXhrController::class, 'update']);
-        Route::post('task/{id}/delete', [TasksXhrController::class, 'delete']);
+        Route::prefix('v1')->group(function () {
+            Route::get('lists', [TaskListXhrController::class, 'index']);
+            Route::get('list/{id}', [TaskListXhrController::class, 'show']);
+            Route::get('tasks', [TasksXhrController::class, 'index']);
+            Route::post('task', [TasksXhrController::class, 'create']);
+            Route::post('task/{id}/edit', [TasksXhrController::class, 'update']);
+            Route::post('task/{id}/delete', [TasksXhrController::class, 'delete']);
+        });
     });
 
-    // VUE.js app
-    Route::get('list/{id}', [TaskListController::class, 'show']);
-
-    // Regular blade
     Route::get('lists', [TaskListController::class, 'index'])->name('lists');
     Route::post('list', [TaskListController::class, 'create']);
-
-    // User management
+    Route::get('list/{id}', [TaskListController::class, 'show']);
     Route::get('users', [UsersController::class, 'index'])->name('users');
     Route::post('user', [UsersController::class, 'create']);
 });

@@ -61,7 +61,7 @@ computed: {
 },
 methods: {
     addTask(task){
-        window.axios.post("/xhr/task", {
+        window.axios.post("/xhr/v1/task", {
            title: task,
            list: this.listId
         }).then((response) => {
@@ -79,7 +79,7 @@ methods: {
         this.modalTask = null;
     },
     renameTask(taskId, title){
-        window.axios.post("/xhr/task/" + taskId + "/edit", {
+        window.axios.post("/xhr/v1/task/" + taskId + "/edit", {
            id: taskId,
            title: title
         }).then((response) => {
@@ -89,7 +89,7 @@ methods: {
     deleteTask(taskId){
         const taskIndex = this.tasks.findIndex((task) => task.id === taskId);
         
-        window.axios.post("/xhr/task/" + taskId + "/delete", {
+        window.axios.post("/xhr/v1/task/" + taskId + "/delete", {
            id: taskId,
         }).then((response) => {
             console.log("task deleted");
@@ -98,7 +98,7 @@ methods: {
     completeTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
         
-        window.axios.post("/xhr/task/" + taskId + "/edit", {
+        window.axios.post("/xhr/v1/task/" + taskId + "/edit", {
            id: taskId,
            complete: 1
         }).then((response) => {
@@ -108,7 +108,7 @@ methods: {
     activateTask(taskId){
         const taskIndex = this.tasks.findIndex(task => task.id === taskId);
 
-        window.axios.post("/xhr/task/" + taskId + "/edit", {
+        window.axios.post("/xhr/v1/task/" + taskId + "/edit", {
            id: taskId,
            complete: 0
         }).then((response) => {
@@ -130,7 +130,7 @@ components: {
     Modal
 },
 mounted(){
-    window.axios.get("/xhr/list/" + this.listId)
+    window.axios.get("/xhr/v1/list/" + this.listId)
         .then((response) => {
             response.data.forEach(element => {
                 if(element.complete == "0"){
