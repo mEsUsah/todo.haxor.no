@@ -1,5 +1,9 @@
 <template>
-    <div @touchend="touchEnd($event, id)" @touchstart="touchStart($event)">
+    <div 
+        @touchend="touchEnd($event)" 
+        @touchstart="touchStart($event)"
+        @mouseup="touchEnd($event)"
+        @mousedown="touchStart($event)">
         <p>{{ task }}</p>
         <div>
             <base-button v-if="complete" @click="activateTask(id)">Undo</base-button>
@@ -27,9 +31,9 @@ export default{
         touchStart(event){
                 this.touchStartTimeStamp = event.timeStamp;
         },
-        touchEnd(event, taskId){
+        touchEnd(event){
             if(event.timeStamp - this.touchStartTimeStamp > 800){
-                this.$emit('modify-task', taskId);
+                this.$emit('modify-task', this.id);
             }
         },
     }
@@ -51,6 +55,7 @@ div:not(:last-of-type){
 p{
     margin: 0;
     text-transform: capitalize;
+    user-select: none;
 }
 
 </style>
