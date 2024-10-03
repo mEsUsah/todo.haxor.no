@@ -49,7 +49,7 @@ export default{
 .background{
     position: fixed;
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0,0.5);
