@@ -1,0 +1,102 @@
+header{
+    position: fixed;
+    top: -145px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    transition: all 0.2s;
+    &.active{
+        top: 0;
+    }
+}
+.menu{
+    &__wrapper{
+        position: absolute;
+        background-color: gray;
+        right: 0;
+        top: 125px;
+        padding: 0px 10px;
+        z-index: 9;
+
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.25s all;
+        @include phoneOnly{
+            width: calc(100vw - 20px);
+            height: calc(100vh - 145px);
+            
+        }
+        &.is-active{
+            border-bottom: 1px solid $color-hightlight;
+            padding: 10px;
+        }
+        li{
+            display: inline-block;
+        }
+        a, span{
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 20px;
+        }
+    }
+    &__content{
+        &--wrapper{
+            margin-top: 10px;
+            text-align: right;
+            padding-right: 10px;
+            margin-bottom: 20px;
+            min-width: 200px;
+            ul{
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+                margin: 10px 0 0 0;
+            }
+            li{
+                margin-left: 0;
+
+            }
+        }
+    }
+    &__search{
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            
+            input{
+                width: 100%;
+                font-size: 16px;
+                line-height: 20px;
+                padding: 6px 10px;
+                border: 2px solid black;
+                border-right: none;
+                border-bottom-left-radius: 3px;
+                border-top-left-radius: 3px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+            
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+            button{
+                font-size: 16px;
+                line-height: 20px;
+                padding: 6px 10px;
+                border: 2px solid black;
+                background-color: black;
+                color: white;
+                cursor: pointer;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+        }
+    }
+}

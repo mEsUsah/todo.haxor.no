@@ -1,0 +1,45 @@
+.header{
+    &__wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: black;
+    }
+    &__title{
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-decoration: none;
+        
+        &--icon{
+            background-image: $icon-haxor-white;
+            height: 125px;
+            width: 75px;
+            margin-right: 10px;
+            background-position: 0 33px;
+            background-repeat: no-repeat;
+        }
+        &--iconText{
+            background-image: $icon-haxor_no-white;
+            height: 125px;
+            width: 180px;
+            background-position: 0 47px;
+            background-repeat: no-repeat;
+        }
+        &--text{
+            font-family: "Regensburg";
+            padding-left: 10px;
+            color: white;
+            font-size: 40px;
+        }
+    }
+    &__menu{
+        &--button{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-right: 10px;
+        }
+    }
+}

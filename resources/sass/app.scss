@@ -12,3 +12,15 @@
 #todo{
     margin: 0 10px;
 }
+
+// Base
+@import './base/fonts.scss';
+@import './base/general.scss';
+@import './base/variables.scss';
+@import './base/icons.scss';
+@import './base/mixins.scss';
+
+// components
+@import './components/header.scss';
+@import './components/menu.scss';
+@import './components/hamburger.scss';

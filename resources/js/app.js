@@ -14,6 +14,8 @@ import App from './App.vue';
 import BaseCard from './components/BaseCard.vue';
 import BaseButton from './components/BaseButton.vue';
 import TabsWrapper from './components/TabsWrapper.vue';
+import Accordian from './components/accordian.js';
+import Menu from './components/menu.js';
 
 const todoList = document.getElementById('todo');
 if(todoList){
@@ -25,3 +27,6 @@ if(todoList){
     
     app.mount('#todo');
 }
+
+Accordian.init();
+Menu.init();
