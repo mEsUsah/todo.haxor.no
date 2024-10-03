@@ -1,5 +1,9 @@
-# todo.haxor.no #
-Simple Laravel app for colaboration on todo-lists using Websockets.
+[<img src="public/resources/svg/haxor_no-white.svg" width="250" style="display:inline-block"/>](public/resources/svg/haxor_no-white.svg)
+# Todo Haxor
+
+Simple Laravel app for realtime colaboration on todo-lists using Websockets.
+
+- Build with Laravel 11
 
 ## Installation
 Install dependencies
