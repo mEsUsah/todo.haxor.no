@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TaskList;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskListXhrController extends Controller
@@ -15,7 +16,7 @@ class TaskListXhrController extends Controller
 
     public static function show($id)
     {
-        $tasks = TaskList::where('list', $id)
+        $tasks = Task::find($id)
             ->select('id', 'title','complete')
             ->get();
 
