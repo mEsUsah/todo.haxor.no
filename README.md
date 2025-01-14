@@ -11,6 +11,21 @@ Install dependencies
 composer install
 npm install
 ```
+MySQL / MariaDB setup
+```sql
+-- Crate DB
+CREATE DATABASE todohaxor;
+
+-- Local database user
+CREATE USER todohaxor@localhost IDENTIFIED BY 'todohaxor';
+GRANT ALL PRIVILEGES ON todohaxor.* TO todohaxor@localhost;
+FLUSH PRIVILEGES;
+
+-- WSL database user
+CREATE USER todohaxor@'%' IDENTIFIED BY 'todohaxor';
+GRANT ALL PRIVILEGES ON todohaxor.* TO todohaxor@'%';
+FLUSH PRIVILEGES;
+```
 
 ## DDev setup
 To start the the DDev instance, simply run:
