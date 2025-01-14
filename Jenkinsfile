@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                git branch: 'master', url: 'https://github.com/mEsUsah/todo.haxor.no.git'
+                git branch: 'prod', url: 'https://github.com/mEsUsah/todo.haxor.no.git'
                 
                 // Install PHP dependencies
                 sh '/usr/bin/php8.2 /usr/bin/composer install'
