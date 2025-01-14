@@ -11,7 +11,7 @@ Install dependencies
 composer install
 npm install
 ```
-MySQL / MariaDB setup
+## MySQL / MariaDB setup
 ```sql
 -- Crate DB
 CREATE DATABASE todohaxor;
