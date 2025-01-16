@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" bootstrap="vendor/autoload.php" colors="true" cacheDirectory=".phpunit.cache">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" 
+  bootstrap="vendor/autoload.php" 
+  colors="true" 
+  testdox="true"
+  cacheDirectory=".phpunit.cache">
   <testsuites>
     <testsuite name="Unit">
       <directory suffix="Test.php">./tests/Unit</directory>
@@ -19,11 +24,11 @@
     <env name="TELESCOPE_ENABLED" value="false"/>
 
     <env name="DB_CONNECTION" value="mysql" />
-    <env name="DB_HOST" value="db" />
+    <env name="DB_HOST" value="localhost" />
     <env name="DB_PORT" value="3306" />
-    <env name="DB_DATABASE" value="db" />
-    <env name="DB_USERNAME" value="db" />
-    <env name="DB_PASSWORD" value="db" />
+    <env name="DB_DATABASE" value="todohaxor" />
+    <env name="DB_USERNAME" value="todohaxor" />
+    <env name="DB_PASSWORD" value="todohaxor" />
   </php>
   <source>
     <include>
