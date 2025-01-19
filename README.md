@@ -2,6 +2,7 @@
 # Todo Haxor
 
 Simple Laravel app for realtime colaboration on todo-lists using Websockets.
+Test build
 
 - Build with Laravel 11
 
