@@ -14,6 +14,7 @@ pipeline {
                 
                 // Generate app key
                 sh "/usr/bin/php8.2 artisan key:generate"
+                sh "/usr/bin/php8.2 artisan migrate"
             }
         }
         stage('Test PHP') {
