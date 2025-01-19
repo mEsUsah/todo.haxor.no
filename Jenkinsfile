@@ -10,7 +10,7 @@ pipeline {
                 sh '/usr/bin/php8.2 /usr/bin/composer install'
                 
                 // Create .env file
-                sh 'cp .env.example .env'
+                sh 'cp .env.ci .env'
                 
                 // Generate app key
                 sh "/usr/bin/php8.2 artisan key:generate"
