@@ -10,7 +10,7 @@ Test build
 Install dependencies
 ```bash
 composer install
-npm install
+npm install 
 ```
 ## MySQL / MariaDB setup
 ```sql
