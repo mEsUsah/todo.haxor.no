@@ -23,10 +23,5 @@ pipeline {
                 junit 'report/*.xml'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh "curl -X POST -g https://forge.laravel.com/servers/780266/sites/2431618/deploy/http?token=Yv6Mcic5aLyLpHqofqLZO4QsVk43V75F5fNRp6jI"
-            }
-        }
     }
 }
